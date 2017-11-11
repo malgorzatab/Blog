@@ -1,0 +1,9 @@
+body,h1 {font-family: "Raleway", sans-serif }
+body, html {height: 100%;color: #777777}
+
+.bgimg {
+    background-image: url('images/halastoly.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <title>{% block title %}Into the Wild{% endblock %}</title>
+        {% block stylesheets %}<style>
+            body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        </style>{% endblock %}
+       {# <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

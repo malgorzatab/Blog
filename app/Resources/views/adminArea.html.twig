@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <title>Admin Page</title>
+</head>
+{% stylesheets 'bundles/adminArea.css' filter='cssrewrite' %}
+
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+{% endstylesheets %}
+{% block body %}
+<body>
+<div class="w3-container">
+    <h1>Admin area</h1>
+    <h1>Welcome</h1> <?php echo $_POST["username"]; ?>
+    <ul>
+        <li>Add post</li>
+        <li>Edit post</li>
+        <li>Delete post</li>
+
+    </ul>
+
+</div>
+
+
+</body>
+{% endblock %}
+</html>

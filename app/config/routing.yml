@@ -1,0 +1,8 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+users:
+    resource: '@AppBundle/Controller/UserController.php'
+    type: annotation
+    #requirements:
+     #    _method: GET
