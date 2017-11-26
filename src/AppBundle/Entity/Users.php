@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Post;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Users
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsersRepository")
  */
-class Users implements UserInterface, \Serializable
+class Users extends BaseUser
 {
     /**
      * @var int
@@ -24,26 +24,26 @@ class Users implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
-    /**
+   /* /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
      */
-    private $username;
+   // protected $username;
 
-    /**
+    /*/**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    private $password;
+   // protected $password;
 
-    /**
+   /* /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive;
+   // private $isActive;
 
     // ...
     /**
@@ -54,11 +54,12 @@ class Users implements UserInterface, \Serializable
     private $posts;
     // ...
 
-    public function __construct() {
-        $this->posts = new ArrayCollection();
-        $this->isActive = true;
-    }
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRole("ROLE_USER");
+    }
 
 
     /**
@@ -135,44 +136,12 @@ class Users implements UserInterface, \Serializable
         $this->posts = $posts;
     }
 
-    public function getSalt()
-    {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
-    }
 
     public function getRoles()
     {
         return array('ROLE_USER');
     }
 
-    public function eraseCredentials()
-    {
-    }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-            ) = unserialize($serialized);
-    }
 
 }
 

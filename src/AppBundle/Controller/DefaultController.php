@@ -37,21 +37,76 @@ class DefaultController extends Controller
     /**
      * @Route("/firtspost", name="firstPost")
      */
-    public function aboutAction(Request $request)
+    public function firstPostAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('samplePost.html.twig');
     }
 
     /**
-     * @Route("/adminArea", name="adminArea")
-     * @Method("POST")
-     */
-    public function logInAction(Request $request)
+ * @Route("/adminArea", name="adminArea")
+ *
+ */
+    public function AdminAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('adminArea.html.twig');
     }
+
+    /**
+     * @Route("/addpost", name="addpost")
+     *
+     */
+    public function AddPost(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('posts/post_new.html.twig');
+    }
+
+    /**
+     * @Route("/aboutMe", name="aboutMe")
+     *
+     */
+    public function aboutAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('aboutMe.html.twig');
+    }
+
+    /**
+     * @Route("/photoGallery", name="photoGallery")
+     *
+     */
+    public function photoAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('photoGallery.html.twig');
+    }
+
+    /**
+     * @Route("/slideshow", name="slideshow")
+     *
+     */
+    public function slideshowAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('slideshow.html.twig');
+    }
+
+    /**
+     * @Route("/post_index", name="post_index")
+     *
+     */
+    public function postindexAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('posts/post_index.html.twig');
+    }
+
+
+
+
+
 
 
 

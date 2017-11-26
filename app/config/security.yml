@@ -2,42 +2,31 @@
 # https://symfony.com/doc/current/security.html
 security:
     encoders:
-        AppBundle\Entity\Users:
-         algorithm: bcrypt
-#role_hierarchy:
-#ROLE_ADMIN: [ROLE_USER]
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
-        #in_memory:
-         #  memory: ~
-            our_db_provider:
-                        entity:
-                            class: AppBundle:Users
-                            property: username
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
-             anonymous: ~
-             pattern:    ^/
-             http_basic: ~
-             provider: our_db_provider
-            # activate different ways to authenticate
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+            logout:       true
+            anonymous:    true
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
-
-#access_control:
-#- { path: /login.html.twig, roles: [IS_AUTHENTICATED_ANONYMOUSLY, ROLE_USER] }
-#- { path: /user/user_edit.html.twig, roles: ROLE_ADMIN }
-#- { path: /user/user_index.html.twig, roles: ROLE_ADMIN }
-#- { path: /user/user_show.html.twig, roles: ROLE_ADMIN }
-#- { path: /user/user_new.html.twig, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#- { path: /.*, roles: [IS_AUTHENTICATED_ANONYMOUSLY, ROLE_USER] }
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/adminArea, role: ROLE_USER }
+        - { path: ^/profile, role: ROLE_USER }

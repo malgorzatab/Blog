@@ -3,6 +3,31 @@
 {% block body %}
     <body class="w3-light-grey">
 
+    <body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button">HOME</a>
+            <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTOS</a>
+            <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> FORUM</a>
+            <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+                <i class="fa fa-search"></i>
+            </a>
+
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+            <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">PHOTOS</a>
+            <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button" onclick="toggleFunction()">FORUM</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        </div>
+    </div>
     <!-- w3-content defines a container for fixed size centered content,
     and is wrapped around the whole page content, except for the footer in this  -->
     <div class="w3-content" style="max-width:1600px">
@@ -43,7 +68,7 @@
                 </div>
                 <hr>
 
-                <!-- Blog entry -->
+                <!-- Blog entry-->
                 <div class="w3-card-4 w3-margin w3-white">
                     {% image '@AppBundle/public/images/jadolomity.jpg' %}
                     <img src="{{ asset_url }}" alt="Italy" style="width:100%" />
@@ -74,10 +99,10 @@
                 <!-- About Card -->
                 <div class="w3-card-2 w3-margin w3-margin-top">
                     {%  image '@AppBundle/public/images/profile.jpg' %}
-                    <img src="{{ asset_url }}" alt="Me" style="width:100%">
+                   <img  src="{{ asset_url }}" alt="Me" style="width:100%">
                     {% endimage %}
                     <div class="w3-container w3-white">
-                        <h4><b>Małgorzata</b></h4>
+                        <a href="{{ path('aboutMe') }}"><h4><b>Małgorzata</b></h4></a>
                         <p>Just me, exploring the universe of uknownment. I have a heart of love and a interest of mountains and dance. I want to share my world with you.</p>
                     </div>
                 </div><hr>
@@ -143,6 +168,34 @@
         <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
 
+
+    <!-- JavaScript functions -->
+    {% block javascripts %}
+        <script>
+
+            // Change style of navbar on scroll
+            window.onscroll = function() {myFunction()};
+            function myFunction() {
+                var navbar = document.getElementById("myNavbar");
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+                } else {
+                    navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+                }
+            }
+
+            // Used to toggle the menu on small screens when clicking on the menu button
+            function toggleFunction() {
+                var x = document.getElementById("navDemo");
+                if (x.className.indexOf("w3-show") === -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
+        </script>
+    {% endblock %}
+
     </body>
 {% endblock %}
 
@@ -151,3 +204,5 @@
     body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 {% endblock %}
+
+

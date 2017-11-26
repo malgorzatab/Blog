@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <title>Slideshow</title>
+</head>
+{% stylesheets 'bundles/slideshow.css' filter='cssrewrite' %}
+
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+{% endstylesheets %}
+<body>
+<div class="slideshow-container">
+
+    <div class="mySlides fade">
+        <div class="numbertext">1 / 7</div>
+        {%  image '@AppBundle/public/images/mount.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">2 / 7</div>
+        {%  image '@AppBundle/public/images/jadolomity.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 7</div>
+        {%  image '@AppBundle/public/images/myFav.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 7</div>
+        {%  image '@AppBundle/public/images/ja.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 7</div>
+        {%  image '@AppBundle/public/images/skaly.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">5 / 7</div>
+        {%  image '@AppBundle/public/images/zielonepleso.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">6 / 7</div>
+        {%  image '@AppBundle/public/images/stoly.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">7 / 7</div>
+        {%  image '@AppBundle/public/images/halastoly.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+{% block javascript %}
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+{% endblock %}
+</body>
+</html>

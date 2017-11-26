@@ -71,11 +71,12 @@ class Post
 
     /**
      * Post constructor.
-     * @param int $id
-     */
-    public function __construct($id)
+     **/
+
+    public function __construct()
     {
-        $this->id = $id;
+
+       // $this->id = $id;@param int $id
     }
 
 

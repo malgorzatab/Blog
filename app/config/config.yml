@@ -82,3 +82,14 @@ assetic:
     bundles: []
     filters:
         cssrewrite: ~
+
+fos_user:
+            db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+            firewall_name: main
+            user_class: AppBundle\Entity\Users
+            from_email:
+                    address: "java.gosia@gmail.com"
+                    sender_name: "gosiaBlog"
+            registration:
+                form:
+                    type: AppBundle\Form\RegistrationType
