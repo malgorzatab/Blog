@@ -19,31 +19,28 @@
     </script>
 </head>
 {% block body %}
-<div class="w3-container">
-    <form action="{{ path('post_new') }}" method="post">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
 
-        <input type="submit" value="Create" />
+    <div class="w3-container">
+
+        {{ form_start(form)}}
+        {{ form_widget(form) }}
         {{ form_end(form) }}
 
-        <p>                    </p>
-    </form>
 
-</div>
+    </div>
 
 
-<div class="w3-container">
+<!--<div class="w3-container">
 
 
-    <form action='' method='post'>
+    <form action="" method='post'>
 
 
         <p><label>Title</label><br />
-            <input type='text' name='postTitle' ></p>
+            <input type='text' name='postTitle' value=''></p>
 
         <p><label>Description</label><br />
-            <textarea name='postDesc' cols='60' rows='10'></textarea></p>
+            <textarea name='postDesc' cols='60' rows='10'><?php if(isset($error)){ echo $_POST['postDesc'];}?></textarea></p>
 
         <p><label>Content</label><br />
             <textarea name='postCont' cols='60' rows='10'></textarea></p>
@@ -53,7 +50,7 @@
     </form>
 
 
-</div>
+</div>-->
 
 {% endblock %}
 </html>
