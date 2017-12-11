@@ -58,97 +58,20 @@ class PostController extends Controller
         $form = $this->createForm( 'AppBundle\Form\NewPostType', $post);
         $form->handleRequest($request);
 
-      /*  if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
             return $this->redirectToRoute('post_show', array('id' => $post->getId(), 'status' => true));
-        }*/
+        }
 
         return $this->render('posts/post_new.html.twig', array(
             'post' => $post,
             'form' => $form->createView(),
         ));
 
-    /* $em = $this->getDoctrine()->getManager();
 
-     $post = new Post();
-     $post->setTitle('Czy to zacznie dzialac?');
-     $post->setContent('juz mnie to wkurza strasznie');
-     $post->setDataPosted(new \DateTime('now'));
-     $post->setImage('yhym tak');
-     $post->setTags('tag');
-
-     // tells Doctrine you want to (eventually) save the Product (no queries yet)
-     $em->persist($post);
-
-     // actually executes the queries (i.e. the INSERT query)
-     $em->flush();
-     return $this->render('posts/post_new.html.twig', array(
-           'post' => $post,
-     ));*/
-    //return new Response('Saved new product with id '.$post->getId());
-
-    /*   $post->setTitle('Czy to zacznie dzialac?');
-       $post->setContent('juz mnie to wkurza strasznie');
-       $post->setDataPosted(new \DateTime('now'));
-       $post->setImage('yhym tak');
-       $post->setTags('tag');
-
-       $form = $this->createFormBuilder($post)
-           ->add('title', TextType::class)
-       ->add('content',TextType::class)
-           ->add('dataPosted',DateType::class)
-           ->add('image', TextType::class)
-           ->add('tags',TextType::class)
-           ->getForm();
-
-       return $this->render('posts/post_new.html.twig', array(
-           'form' => $form->createView(),
-       ));*/
-
-    /* $post = new Post();
-      $form = $this->createFormBuilder($post)
-          ->add('title', TextType::class)
-          ->add('content',TextType::class)
-          ->add('dataPosted',DateType::class)
-          ->add('image', TextType::class)
-          ->add('tags',TextType::class)
-          ->getForm();
-      $form->handleRequest($request);
-
-      if ($form->isSubmitted() && $form->isValid()) {
-          // $form->getData() holds the submitted values
-          // but, the original `$task` variable has also been updated
-          $post = $form->getData();
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($post);
-          $em->flush();
-          return $this->redirectToRoute('post_index');
-      }
-
-      return $this->render('posts/post_new.html.twig', array(
-          'form' => $form->createView(),
-      ));
-
-    /* $form = $this->createForm(new NewPostType(), $post);
-     $form->handleRequest($request);
-
-
-      if ($form->isSubmitted() && $form->isValid()) {
-          $post = $form->getData();
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($post);
-          $em->flush();
-
-          return $this->redirectToRoute('post_index');//, array('id' => $post->getId()));
-      }
-
-      return $this->render('posts/post_new.html.twig', array(
-          'post' => $post,
-          'form' => $form->createView(),
-      ));*/
 
     }
 
@@ -157,13 +80,12 @@ class PostController extends Controller
      *
      * @Route("/{id}", name="post_show")
      * @Method("GET")
-     * @param integer $id
-     * @param boolean $status
+
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction($id, $status=false)
+    public function showAction( $id, $status=true)
     {
-      /*  if($status == null){
+        if($status == null){
             $status = false;
         }
 
@@ -171,8 +93,8 @@ class PostController extends Controller
         return $this->render('posts/post_index.html.twig', array(
             'post' => $post,
             'status' => $status
-        ));*/
-        return $this->render('posts/post_index.html.twig');
+        ));
+     //   return $this->render('posts/post_index.html.twig');
 
     }
 

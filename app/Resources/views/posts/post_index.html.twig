@@ -5,6 +5,30 @@
     <title>Title</title>
 </head>
 {% block body %}
-<h1>Dodane</h1>
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
+        <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
+        <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
+        <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+        <i class="fa fa-search"></i>
+
+
+    </div>
+</div>
+<div class="container">
+    {% if status == true %}
+        <p class="success">Added successfully!</p>
+    {% endif %}
+    </div>
+<p>{{ post.title }}</p>
+    <p>{{ post.dataPosted |date(" m/d/Y")}}</p>
+    <p>{{ post.content }}</p>
+    <p>{{ post.tags }}</p>
+    <p>{{ post.image | join }}</p>
+
 {% endblock %}
 </html>

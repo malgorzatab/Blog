@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
+
 
         ];
 
