@@ -14,7 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Post;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class NewPostType extends AbstractType
 {
@@ -27,9 +28,9 @@ class NewPostType extends AbstractType
     {
         $builder->add('title',TextType::class,  array('label' => 'Title', 'attr' => array('placeholder' => 'Enter title')))
 
-            ->add('content',TextType::class,  array('label' => 'Content', 'attr' => array('placeholder' => 'Enter content')))
+            ->add('content',TextareaType::class,  array('label' => 'Content', 'attr' => array('placeholder' => 'Enter content')))
             ->add('dataPosted',DateTimeType::class, array('label' => 'Date', 'attr' => array('placeholder' => 'Enter date')))
-            ->add('image',TextType::class, array('label' => 'Image', 'attr' => array('placeholder' => 'Enter image xD')))
+            ->add('image',TextType::class, array('label' => 'Image', 'attr' => array('placeholder' => 'Upload image ')))
             ->add('tags',TextType::class, array('label' => 'Tag', 'attr' => array('placeholder' => 'Enter tag')));
 
     }

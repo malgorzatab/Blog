@@ -4,6 +4,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Bundle\AsseticBundle\DependencyInjection\Compiler;
 
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -19,7 +20,6 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Vich\UploaderBundle\VichUploaderBundle(),
 
 
 

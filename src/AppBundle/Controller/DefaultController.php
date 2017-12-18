@@ -21,7 +21,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("/homepage", name="homepage")
+     * @Route("/page", name="page")
      */
 
     public function indexAction(Request $request)

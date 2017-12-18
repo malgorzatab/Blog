@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Title</title>
 </head>
+{% stylesheets 'bundles/PostBackground.css' filter='cssrewrite' %}
+
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+{% endstylesheets %}
 {% block body %}
 <div class="w3-top">
     <div class="w3-bar" id="myNavbar">
@@ -14,21 +23,98 @@
         <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
         <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
         <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
-        <i class="fa fa-search"></i>
-
-
     </div>
 </div>
-<div class="container">
-    {% if status == true %}
-        <p class="success">Added successfully!</p>
-    {% endif %}
+    <!-- First Parallax Image with Logo Text -->
+    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+        <div class="w3-display-middle" style="white-space:nowrap;">
+            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">INTO <span class="w3-hide-small">THE </span>WILD</span>
+        </div>
     </div>
-<p>{{ post.title }}</p>
-    <p>{{ post.dataPosted |date(" m/d/Y")}}</p>
+    <!-- Container (About Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="about">
+        <h1 class="w3-center">{{ post.title }}</h1>
+    <h3>{{ post.dataPosted |date(" m/d/Y")}}</h3>
     <p>{{ post.content }}</p>
     <p>{{ post.tags }}</p>
-    <p>{{ post.image | join }}</p>
+     <!--   <p>Po wyjściu z ostatniego egzaminu w sesji poprawkowej wsiadłam prosto w autobus do Zakopanego by wieczorem być już w ukochanym Kościelisku. Jak przez całe wakacjie tak i we wrześniu w polskich górach jest pełno ludzi. Żeby nie siedzieć w domu na popołudniowy spacer wybrałam miejsce, w którym można uniknąć tłumów a mianowicie Halę Stoły do której wychodzi się z Doliny Kościeliskiej. Po drodze spotykamy parę osób a na samej hali możemy cieszyć się ciszą i spokojem oraz oglądać piękne widoki. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+    </div>
+
+    <!-- Second Parallax Image with Portfolio Text -->
+    <div class="bgimg-2 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">GALLERY</span>
+        </div>
+    </div>
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="portfolio">
+    <h3 class="w3-center">MY PHOTOS</h3>
+    <p class="w3-center"><em><br> Click on the images to make them bigger</em></p><br>
+</div>
+    <!-- Third Parallax Image with Portfolio Text -->
+    <div class="bgimg-3 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+        </div>
+    </div>
+    <!--
+     Container (Contact Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="contact">
+        <p class="w3-center"><em>I'd love your feedback!</em></p>
+        <p class="w3-center"><em>Find me on social media below.</em></p>
+
+
+    </div>
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <div class="w3-xlarge w3-section">
+            <a href="https://www.facebook.com/gosiak.gosiexon" target="_blank"> <i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+            <a href="https://www.instagram.com/gosiexon/?hl=pl" target="_blank"> <i class="fa fa-instagram w3-hover-opacity"></i></a>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    </footer>
+
+
+    <!-- JavaScript functions -->
+{% block javascripts %}
+    <script>
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+        // Change style of navbar on scroll
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var navbar = document.getElementById("myNavbar");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+            } else {
+                navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+            }
+        }
+
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function toggleFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") === -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+{% endblock %}
+
 
 {% endblock %}
 </html>

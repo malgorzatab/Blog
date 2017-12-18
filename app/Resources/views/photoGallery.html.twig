@@ -22,8 +22,8 @@
         <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
         <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
         <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
-        <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
-        <i class="fa fa-search"></i>
+        <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+
 
 
     </div>

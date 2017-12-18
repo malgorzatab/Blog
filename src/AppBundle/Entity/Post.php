@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Users;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -49,6 +50,7 @@ class Post
     /**
      * @var string
      * @ORM\Column(name="image",type="string", length=20)
+
      */
     private $image;
 
@@ -113,6 +115,7 @@ class Post
     public function setImage($image)
     {
         $this->image = $image;
+
     }
 
 

@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    #images_dir: '%kernel.project_dir%/../../src/AppBundle/public/images'
 
 framework:
     #esi: ~
@@ -93,5 +94,3 @@ fos_user:
             registration:
                 form:
                     type: AppBundle\Form\RegistrationType
-vich_uploader:
-    db_driver: orm

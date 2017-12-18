@@ -40,66 +40,12 @@
 
         <!-- Grid -->
         <div class="w3-row">
-
-            <!-- Blog entries -->
-            <div class="w3-col l8 s12">
-                <!-- Blog entry -->
-                <div class="w3-card-4 w3-margin w3-white">
-                    {% image '@AppBundle/public/images/mgla.jpg' %}
-                    <img src="{{ asset_url }}" alt="Mountain" style="width:100%" />
-                    {% endimage %}
-                    <!--<img src="/web/images/mgla.jpg" alt="Mountain" style="width:100%">-->
-                    <div class="w3-container">
-                        <h3><b>AWAY FROM THE CITY</b></h3>
-                        <h5>Odpoczynek, <span class="w3-opacity">September 16, 2017</span></h5>
-                    </div>
-
-                    <div class="w3-container">
-                        <p>Po wyjściu z ostatniego egzaminu w sesji poprawkowej wsiadłam prosto w autobus do Zakopanego by wieczorem być już w ukochanym Kościelisku. Jak przez całe wakacjie tak i we wrześniu w polskich górach jest pełno ludzi. Żeby nie siedzieć w domu na popołudniowy spacer wybrałam miejsce, w którym można uniknąć tłumów a mianowicie Halę Stoły do której wychodzi się z Doliny Kościeliskiej.</p>
-                        <div class="w3-row">
-                            <div class="w3-col m8 s12">
-                                <p><button class="w3-button w3-padding-large w3-white w3-border"> <a href="{{ path('firstPost') }}"><b>READ MORE »</b></a></button></p>
-                            </div>
-                            <div class="w3-col m4 w3-hide-small">
-                                <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag">0</span></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-
-                <!-- Blog entry-->
-                <div class="w3-card-4 w3-margin w3-white">
-                    {% image '@AppBundle/public/images/jadolomity.jpg' %}
-                    <img src="{{ asset_url }}" alt="Italy" style="width:100%" />
-                    {% endimage %}
-                    <div class="w3-container">
-                        <h3><b>BLOG ENTRY</b></h3>
-                        <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
-                    </div>
-
-                    <div class="w3-container">
-                        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-                            tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-                        <div class="w3-row">
-                            <div class="w3-col m8 s12">
-                                <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
-                            </div>
-                            <div class="w3-col m4 w3-hide-small">
-                                <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END BLOG ENTRIES -->
-            </div>
-
             <!-- Introduction menu -->
-            <div class="w3-col l4">
+            <div class="w3-col l4 w3-right">
                 <!-- About Card -->
                 <div class="w3-card-2 w3-margin w3-margin-top">
                     {%  image '@AppBundle/public/images/profile.jpg' %}
-                   <img  src="{{ asset_url }}" alt="Me" style="width:100%">
+                    <img  src="{{ asset_url }}" alt="Me" style="width:100%">
                     {% endimage %}
                     <div class="w3-container w3-white">
                         <a href="{{ path('aboutMe') }}"><h4><b>Małgorzata</b></h4></a>
@@ -154,6 +100,40 @@
 
                 <!-- END Introduction Menu -->
             </div>
+            {% if posts %}
+             {% for post in posts %}
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12 w3-left">
+                <!-- Blog entry -->
+                <div class="w3-card-4 w3-margin w3-white">
+                    {% image '@AppBundle/public/images/mgla.jpg' %}
+                    <img src="{{ asset_url }}" alt="Mountain" style="width:100%" />
+                    {% endimage %}
+                    <div class="w3-container">
+                        <h3><b>{{ post.title }}</b></h3>
+                        <h5> <span class="w3-opacity">{{ post.dataPosted |date(" m/d/Y")}}</span></h5>
+                    </div>
+
+                    <div class="w3-container">
+                         <div class="w3-row">
+                            <div class="w3-col m8 s12">
+                                <p><button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_show', { 'id': post.getId() }) }}"> <b>READ MORE »</b></a></button></p>-->
+                            </div>
+                            <div class="w3-col m4 w3-hide-small">
+                                <p><span class="w3-padding-large w3-right"><b>{{ post.tags }}  </b></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- END BLOG ENTRIES -->
+            </div>
+                {% endfor %}
+                {% endif %}
+           <!-- </form>-->
+
+
 
             <!-- END GRID -->
         </div><br>

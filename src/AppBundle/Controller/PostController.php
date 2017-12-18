@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 /**
@@ -32,15 +33,23 @@ class PostController extends Controller
 
     /**
      * Lists all posts entities.
-     *
-     * @Route("/", name="post_index")
+    /**
+     * @Route("/homepage", name="homepage")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Method("GET")
+
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $posts= $this->getDoctrine()->getRepository(Post::class)->findAll();
+
+        return $this->render('default/index.html.twig', array(
+            'posts' => $posts,
+        ));
 
 
-        return $this->render('posts/post_index.html.twig');
+
     }
 
 
@@ -52,13 +61,17 @@ class PostController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request)//,FileUploader $fileUploader)
     {
         $post = new Post();
         $form = $this->createForm( 'AppBundle\Form\NewPostType', $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+          //  $file = $post->getImage();
+          //  $fileName = $fileUploader->upload($file);
+
+          //  $post->setImage($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <title>Title</title>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>
+    <!--<script>
         tinymce.init({
             selector: "textarea",
             plugins: [
@@ -16,7 +16,7 @@
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
         });
-    </script>
+    </script>-->
 </head>
 
 {% stylesheets 'bundles/addPost.css' filter='cssrewrite' %}
@@ -33,7 +33,7 @@
             <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
             <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
             <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
-            <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+            <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
             <i class="fa fa-search"></i>
 
 

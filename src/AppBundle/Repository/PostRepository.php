@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public  function findAll()
+    {
+        $builder = $this->createQueryBuilder('p');
+        $query = $builder->select('p')
+            ->orderBy('p.dataPosted', 'DESC')
+            ->getQuery();
+        return $query->getResult();
+    }
 }
