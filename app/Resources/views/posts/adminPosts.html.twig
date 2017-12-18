@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <title>Title</title>
+</head>
+{% block body %}
+
+
+<!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-right">HOME</a>
+            <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-th"></i> PHOTOS</a>
+            <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-envelope"></i> FORUM</a>
+            <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+            <i class="fa fa-search"></i>
+
+
+        </div>
+    </div>
+<div class="w3-content" style="max-width:1600px">
+    <div class="w3-row">
+        {% if posts %}
+        {% for post in posts %}
+    <!-- Blog entries -->
+    <div class="w3-col l8 s12 w3-left">
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+            {% image '@AppBundle/public/images/mgla.jpg' %}
+            <img src="{{ asset_url }}" alt="Mountain" style="width:100%" />
+            {% endimage %}
+            <div class="w3-container">
+                <h3><b>{{ post.title }}</b></h3>
+                <h5> <span class="w3-opacity">{{ post.dataPosted |date(" m/d/Y")}}</span></h5>
+            </div>
+
+            <div class="w3-container">
+                <div class="w3-row">
+                    <div class="w3-col m8 s12">
+                        <div class="w3-container">
+                        <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_show', { 'id': post.getId() }) }}"> <b>READ MORE »</b></a></button>
+                        <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_edit', { 'id': post.getId() }) }}"> <b>Edit Post »</b></a></button>
+                        <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_delete', { 'id': post.getId() }) }}"> <b>Delete Post »</b></a></button>
+                        </div>
+                    </div>
+
+                    <div class="w3-col m4 w3-hide-small">
+                        <p><span class="w3-padding-large w3-right"><b>{{ post.tags }}  </b></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- END BLOG ENTRIES -->
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!-- </form>-->
+</div>
+</div>
+
+
+    <!-- JavaScript functions -->
+{% block javascripts %}
+    <script>
+
+        // Change style of navbar on scroll
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var navbar = document.getElementById("myNavbar");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+            } else {
+                navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+            }
+        }
+
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function toggleFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") === -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+{% endblock %}
+{% endblock %}
+</html>

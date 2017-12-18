@@ -52,6 +52,27 @@ class PostController extends Controller
 
     }
 
+    /**
+     * Lists all posts entities.
+    /**
+     * @Route("/adminPosts", name="adminPosts")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Method("GET")
+
+     */
+    public function showPostsAction(Request $request)
+    {
+        $posts= $this->getDoctrine()->getRepository(Post::class)->findAll();
+
+        return $this->render('posts/adminPosts.html.twig', array(
+            'posts' => $posts,
+        ));
+
+
+
+    }
+
 
     /**
      * Creates a new post entity.
@@ -61,7 +82,7 @@ class PostController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)//,FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $post = new Post();
         $form = $this->createForm( 'AppBundle\Form\NewPostType', $post);
@@ -117,10 +138,26 @@ class PostController extends Controller
      *
      * @Route("/{id}/edit", name="post_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Post $post)
     {
+        $editform = $this->createForm( 'AppBundle\Form\NewPostType', $post);
+        $editform->handleRequest($request);
 
+        if ($editform->isSubmitted() && $editform->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', array('id' => $post->getId(), 'status' => true));
+        }
+
+        return $this->render('posts/post_edit.html.twig', array(
+            'post' => $post,
+            'form' => $editform->createView(),
+        ));
     }
 
     /**
