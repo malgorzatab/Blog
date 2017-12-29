@@ -13,64 +13,73 @@
 
 {% endstylesheets %}
 <body>
-<!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
-        <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
-        <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
+        <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left w3-text-bold">HOME</a>
+        <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left "><i class="fa fa-th"></i> PHOTOS</a>
+        <a href="{{ path('forum') }}" class="w3-bar-item w3-button w3-hide-small w3-left "><i class="fa fa-envelope"></i> FORUM</a>
         <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
-
-
-
     </div>
+</div>
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+              {%  image '@AppBundle/public/images/jaa.jpg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="1500" height="600">{% endimage %}
+        <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">Malgorzata Bien</h1>
+            <h5 class="w3-hide-large" style="white-space:nowrap">Malgorzata Bien</h5>
+            <h3 class="w3-hide-medium w3-hide-small">My photo gallery</h3>
 
+        </div>
+        <!-- Navbar (placed at the bottom of the header image) -->
+        <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+            <a href="{{ path('slideshow') }}" class="w3-bar-item w3-button">Click to start slideshow</a>
+
+        </div>
+    </header>
     <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right" onclick="toggleFunction()">HOME</a>
-        <a href="/app/Resources/views/photoGallery.html.twig" class="w3-bar-item w3-button w3-right" onclick="toggleFunction()">PHOTOS</a>
-        <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-right" onclick="toggleFunction()">FORUM</a>
+    <div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+        <div class="w3-bar w3-light-grey">
+            <a href="#" class="w3-bar-item w3-button">Home</a>
+            <a href="#portfolio" class="w3-bar-item w3-button">Portfolio</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+        </div>
     </div>
-</div>
-<!-- Header -->
-<div class="header">
-    <h1>My photo gallery</h1>
-    <a href="{{ path('slideshow') }}"><p>Click to start slideshow</p></a>
-</div>
+
 
     <!-- Photo grid -->
+<div class="w3-content w3-padding-large w3-margin-top">
     <div class="row">
         <div class="column">
-            {%  image '@AppBundle/public/images/mount.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/myFav.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/rap.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/stoly.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+            {%  image '@AppBundle/public/images/mount.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/myFav.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/rap.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/stoly.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
 
         </div>
 
         <div class="column">
-            {%  image '@AppBundle/public/images/czw1.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/czw3.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/czw4.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/zielonepleso.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+            {%  image '@AppBundle/public/images/czw1.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/czw3.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/czw4.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/zielonepleso.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
 
         </div>
 
         <div class="column">
-            {%  image '@AppBundle/public/images/climber.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/skaly.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/dance.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/hala.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+            {%  image '@AppBundle/public/images/climber.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/skaly.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/dance.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/hala.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
 
         </div>
 
         <div class="column">
-            {%  image '@AppBundle/public/images/snieg1.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/ornak.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
-            {%  image '@AppBundle/public/images/snieg2.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Canoeing again">{% endimage %}
+            {%  image '@AppBundle/public/images/snieg1.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/ornak.jpg' %} <img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
+            {%  image '@AppBundle/public/images/snieg2.jpg' %}<img src="{{ asset_url }}" style="width:100%" onclick="onClick(this)" alt="Mountain">{% endimage %}
        </div>
     </div>
 
@@ -95,6 +104,15 @@
         </div>
     </div>
 </div>
+
+<footer>
+    {% block footer %}
+        <div class="w3-center">
+            <p>&copy; Copyright 2018, Małgorzata Bień </p>
+        </div>
+    {% endblock %}
+</footer>
+</body>
 {% block javascripts %}
 <script>
 

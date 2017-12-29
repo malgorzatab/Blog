@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Title</title>
+    <title>My posts</title>
 </head>
 {% stylesheets 'bundles/PostBackground.css' filter='cssrewrite' %}
 
@@ -21,8 +21,8 @@
         </a>
         <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
         <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
-        <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
-        <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+        <a href="{{ path('forum') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
+        <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
     </div>
 </div>
     <!-- First Parallax Image with Logo Text -->
@@ -54,12 +54,39 @@
     <!-- Third Parallax Image with Portfolio Text -->
     <div class="bgimg-3 w3-display-container w3-opacity-min">
         <div class="w3-display-middle">
-            <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+            <span class="w3-xxlarge w3-text-white w3-wide">CONTACT & COMMENTS </span>
         </div>
     </div>
     <!--
      Container (Contact Section) -->
     <div class="w3-content w3-container w3-padding-64" id="contact">
+
+    <div id="disqus_thread"></div>
+    <script>
+
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://intothewild-mb.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
         <p class="w3-center"><em>I'd love your feedback!</em></p>
         <p class="w3-center"><em>Find me on social media below.</em></p>
 
@@ -76,6 +103,10 @@
             <i class="fa fa-twitter w3-hover-opacity"></i>
             <i class="fa fa-linkedin w3-hover-opacity"></i>
         </div>
+
+    <div class="w3-center">
+        <p>&copy; Copyright 2018, Małgorzata Bień </p>
+    </div>
          </footer>
 
 
@@ -112,6 +143,8 @@
             }
         }
     </script>
+
+    <script id="dsq-count-scr" src="//intothewild-mb.disqus.com/count.js" async></script>
 {% endblock %}
 
 

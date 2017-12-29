@@ -1,14 +1,26 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-<div class="w3-display-middle">
-    <div class="w3-container">
-        <div class="w3-section">
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-        </div>
-    </div>
+
+ {%  image '@AppBundle/public/images/halastoly.jpg' %}<img class="w3-image " src="{{ asset_url }}" alt="Me" width="1500" height="600">{% endimage %}
+<div class="w3-display-topleft w3-padding-large w3-xlarge">
+    <a href="{{ path('startPage') }}" class="w3-button w3-black w3-small w3-wide w3-opacity-min" >Back</a>
 </div>
+    <div class="w3-display-middle w3-padding-large w3-topbar w3-bottombar w3-leftbar w3-rightbar w3-wide w3-text-black w3-center">
+
+    <div class="w3-container">
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.plainPassword) }}
+                    {{ form_row(form.plainPassword) }}
+
+    <input type="submit" class="w3-button w3-block w3-gray w3-section w3-padding" value="{{ 'Sign up'|trans }}" >
+        <!--<button class="w3-button w3-block w3-gray w3-section w3-padding" type="submit"><b>Sign up</b></button>-->
+
 {{ form_end(form) }}
+
+</div>
+    </div>
+
+

@@ -13,6 +13,12 @@
 
 {% endstylesheets %}
 <body>
+<div class="w3-display-topleft w3-padding-large w3-xlarge">
+    <a href="{{ path('photoGallery') }}" class="w3-button w3-black w3-small w3-wide w3-opacity-min" >BACK</a>
+</div>
+<div class="w3-display-topright w3-padding-large w3-xlarge">
+<a href="{{ path('fos_user_security_logout') }}" class="w3-button w3-black w3-small w3-wide w3-opacity-min">LOG OUT</a>
+</div>
 <div class="slideshow-container">
 
     <div class="mySlides fade">

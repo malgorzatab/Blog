@@ -13,30 +13,35 @@
 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 
 {% endstylesheets %}
-{% block body %}
-<body>
+{% block content %}
 
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-
+<div class="login">
     <div class="w3-display-topleft w3-padding-large w3-xlarge">
-        <button  class="w3-button w3-black w3-small w3-wide w3-opacity-min" >><a href="{{ path('fos_user_security_login') }}">Log in</a></button>
-
+        <a href="{{ path('fos_user_security_login') }}" class="w3-button w3-black w3-small w3-wide w3-opacity-min" >Log in</a>
     </div>
+</div>
     <div class="w3-display-topright w3-padding-large w3-xlarge">
-        <button  class="w3-button w3-black w3-small w3-wide w3-opacity-min"><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></button>
+        <a href="{{ path('fos_user_registration_register') }}" class="w3-button w3-black w3-small w3-wide w3-opacity-min">Sign Up</a>
     </div>
-    <div class="w3-display-middle">
-        <h1 class="w3-jumbo w3-animate-top"><a href="{{ path('homepage') }}">INTO THE WILD</a></h1>
+    <div class="w3-display-middle w3-padding-large w3-border w3-wide">
+        <!--<h1 class="w3-jumbo w3-animate-top"><a href="{#{{ path('homepage') }}#}">INTO THE WILD</a></h1>-->
+        <a href="{{ path('homepage') }}" class="w3-button w3-xxxlarge"><b>INTO THE WILD</b></a>
         <hr class="w3-border-grey" style="margin:auto;width:40%">
         <p class="w3-large w3-center">by Małgorzata Bień</p>
     </div>
 
 </div>
 
+    <footer>
+        {% block footer %}
+            <div class="w3-center">
+                <p>&copy; Copyright 2018, Małgorzata Bień </p>
+            </div>
+        {% endblock %}
+    </footer>
 
-
-</body>
 {% endblock %}
 
 

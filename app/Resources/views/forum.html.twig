@@ -2,9 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Forum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+{% block body %}
 
-</body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="{{ path('homepage') }}" class="w3-bar-item w3-button">HOME</a>
+        <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTOS</a>
+        <a href="{{ path('forum') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> FORUM</a>
+        <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+
+    </div>
+</div>
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+        {%  image '@AppBundle/public/images/hymalaje.jpg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="1500" height="600">{% endimage %}
+        <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">FORUM</h1>
+            <h5 class="w3-hide-large" style="white-space:nowrap">FORUM</h5>
+            <h3 class="w3-hide-medium w3-hide-small">Let's talk!</h3>
+
+        </div>
+
+    </header>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="/app/Resources/views/default/index.html.twig" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">PHOTOS</a>
+        <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button" onclick="toggleFunction()">FORUM</a>
+        <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+    </div>
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this  -->
+<div class="w3-content" style="max-width:1600px">
+    <div class="w3-center ">
+    <!-- qestion entry-->
+    <div class="w3-card-4 w3-margin w3-white w3-margin-left w3-margin-right w3-margin-left" >
+        <header class="w3-container w3-blue">
+            <h1>Książki! </h1>
+        </header>
+
+        <div class="w3-container">
+            <p>Jak tylko mam chwilę wolnego czasu na odpoczynek biorę książkę do ręki. Czytanie mnie uspokaja i odstresowuje. Niedawno udało mi się przeczytać parę książek o tematyce górskiej.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="w3-container">
+            {%  image '@AppBundle/public/images/books.jpg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="500" height="400">{% endimage %}
+        </div>
+        <div class="w3-container">
+          <p>"Dotknięcie pustki" Joe Simpsona jest książką wzruszającą ale zarazem wciągającą. Autor Joe opowiada histrię jaka przydażyła się jemu i jego koledze w Andach, przedstawia wszystkie szczegóły co czyni książkę bardzo interesującą.</p>
+            </div>
+        <footer class="w3-container w3-blue">
+            <h5>A wy? Co czytacie? Jakie książki polecacie?</h5>
+        </footer>
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://intothewild-mb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    </div>
+
+        <div class="w3-card-4 w3-margin w3-white w3-margin-left w3-margin-right w3-margin-left" >
+            <header class="w3-container w3-blue">
+                <h1>Wyposażenie! </h1>
+            </header>
+
+            <div class="w3-container">
+               <p>Przed pójściem w góry bardzo ważną rzeczą jest opowidnie przygotowanie. Oprócz fizycznego to techniczne, czyli to co spakujemy do plecaka i weźmiemy ze sobą na wycieczkę. Wyposażenie zależy od warunków pogodowych jak i tego co zamierzamy robic. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                </div>
+            <div class="w3-container">
+                {%  image '@AppBundle/public/images/equipment.jpg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="500" height="400">{% endimage %}
+            </div>
+            <div class="w3-container">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <footer class="w3-container w3-blue">
+                <h5>Według was czego nie może zabraknąć w plecaku podczas wyprawy?</h5>
+            </footer>
+
+            <script>
+
+                /**
+                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://intothewild-mb.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </div>
+
+
+
+    </div>
+</div><!--content-->
+
+
+
+<!-- JavaScript functions -->
+{% block javascripts %}
+    <script>
+
+        // Change style of navbar on scroll
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var navbar = document.getElementById("myNavbar");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+            } else {
+                navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+            }
+        }
+
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function toggleFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") === -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+    <script id="dsq-count-scr" src="//intothewild-mb.disqus.com/count.js" async></script>
+{% endblock %}
+
+
+    <footer>
+        {% block footer %}
+            <div class="w3-center">
+                <p>&copy; Copyright 2018, Małgorzata Bień </p>
+            </div>
+        {% endblock %}
+    </footer>
+    {% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+{% endblock %}
 </html>

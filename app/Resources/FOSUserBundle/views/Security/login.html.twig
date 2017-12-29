@@ -2,11 +2,7 @@
 {% block head %}
     {{ parent() }}
     <title>{% block title %}Sign in{% endblock %}</title>
-    {% stylesheets 'bundles/startPage.css' filter='cssrewrite' %}
 
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-
-    {% endstylesheets %}
 {% endblock %}
 
 {% block fos_user_content %}

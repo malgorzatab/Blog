@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    </head>
-
-    {% stylesheets 'bundles/startPage.css' filter='cssrewrite' %}
-
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-
-    {% endstylesheets %}
-    <body>
-        <div>
+{% extends '::startPage.html.twig' %}
+{% block content %}
+<div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
@@ -37,5 +25,5 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
-    </body>
-</html>
+{% endblock %}
+
