@@ -25,16 +25,18 @@
         </div>
     </div>
 <div class="w3-content" style="max-width:1600px">
+
     <div class="w3-row">
         {% if posts %}
         {% for post in posts %}
     <!-- Blog entries -->
     <div class="w3-col l8 s12 w3-left">
         <!-- Blog entry -->
+        <a href="{{ asset('uploads/images/' ~ post.image) }}">View image </a>
         <div class="w3-card-4 w3-margin w3-white">
-            {% image '@AppBundle/public/images/mgla.jpg' %}
-            <img src="{{ asset_url }}" alt="Mountain" style="width:100%" />
-            {% endimage %}
+
+            <img src="{{ asset('../../../web/uploads/images/'~ post.image )}}" alt="Post img" style="width:100%" />
+
             <div class="w3-container">
                 <h3><b>{{ post.title }}</b></h3>
                 <h5> <span class="w3-opacity">{{ post.dataPosted |date(" m/d/Y")}}</span></h5>

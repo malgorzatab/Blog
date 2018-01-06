@@ -30,7 +30,7 @@ class NewPostType extends AbstractType
 
             ->add('content',TextareaType::class,  array('label' => 'Content', 'attr' => array('placeholder' => 'Enter content')))
             ->add('dataPosted',DateTimeType::class, array('label' => 'Date', 'attr' => array('placeholder' => 'Enter date')))
-            ->add('image',TextType::class, array('label' => 'Image', 'attr' => array('placeholder' => 'Upload image ')))
+            ->add('image',FileType::class, array('label' => 'Image', 'attr' => array('placeholder' => 'Upload image ')))
             ->add('tags',TextType::class, array('label' => 'Tag', 'attr' => array('placeholder' => 'Enter tag')));
 
     }

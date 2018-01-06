@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 /**
@@ -80,7 +81,7 @@ class PostController extends Controller
      * @Route("/new", name="post_new")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -89,10 +90,26 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-          //  $file = $post->getImage();
-          //  $fileName = $fileUploader->upload($file);
 
-          //  $post->setImage($fileName);
+            /**
+             * @var UploadedFile $file
+             */
+            $file = $post->getImage();
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+           // $post->setImage($fileName);
+           $post->setImage(
+               new File($this->getParameter('images_directory').'/'.$post->getImage())
+            );
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
@@ -170,4 +187,9 @@ class PostController extends Controller
     {
 
     }
+
+
+
+
+
 }

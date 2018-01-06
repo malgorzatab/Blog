@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Users;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
@@ -49,10 +51,14 @@ class Post
 
     /**
      * @var string
-     * @ORM\Column(name="image",type="string", length=20)
+     * @Assert\NotBlank(message="Please upload a valid Image")
+     * @Assert\File( mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"})
+     * @Assert\Image()
+     * @ORM\Column(name="image",type="string", length=255)
 
      */
     private $image;
+
 
     /**
      * @var string
@@ -111,10 +117,12 @@ class Post
 
     /**
      * @param string $image
+     * @return $this
      */
     public function setImage($image)
     {
         $this->image = $image;
+        return $this;
 
     }
 
@@ -201,6 +209,31 @@ class Post
         return $this->dataPosted;
     }
 
+
+
+
+   /* public function getWebPath() {
+        return null  === $this->image ? null : $this->getUploadDir().'/' .$this->image;
+    }
+
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../web/uploads/images'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return 'uploads/images';
+    }
+
+
+    public function uploadImage() {
+
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        $this->image=$this->file->getClientOriginalName();
+        $this->file=null;
+
+    }*/
 
 
 }

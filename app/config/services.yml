@@ -34,6 +34,3 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-  #AppBundle\Services\FileUploader:
-      #   arguments:
-          #   targetDir: '%images_dir%'
