@@ -44,7 +44,7 @@
             <div class="w3-col l4 w3-right">
                 <!-- About Card -->
                 <div class="w3-card-2 w3-margin w3-margin-top">
-                    {%  image '@AppBundle/public/images/profile.jpg' %}
+                    {%  image '@AppBundle/public/images/IMG_1162.jpg' %}
                     <img  src="{{ asset_url }}" alt="Me" style="width:100%">
                     {% endimage %}
                     <div class="w3-container w3-white">
@@ -55,32 +55,24 @@
 
                 <!-- Posts -->
                 <div class="w3-card-2 w3-margin">
+
                     <div class="w3-container w3-padding">
                         <h4>Popular Posts</h4>
+
                     </div>
+                    {% if posts %}
+                        {% for post in posts |slice(0, 4) %}
                     <ul class="w3-ul w3-hoverable w3-white">
-                        <li class="w3-padding-16">
-                            <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Lorem</span><br>
-                            <span>Sed mattis nunc</span>
-                        </li>
-                        <li class="w3-padding-16">
-                            <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Ipsum</span><br>
-                            <span>Praes tinci sed</span>
-                        </li>
-                        <li class="w3-padding-16">
-                            <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Dorum</span><br>
-                            <span>Ultricies congue</span>
-                        </li>
-                        <li class="w3-padding-16 w3-hide-medium w3-hide-small">
-                            <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Mingsum</span><br>
-                            <span>Lorem ipsum dipsum</span>
-                        </li>
+                        <a href="{{ path('post_show', { 'id': post.getId() }) }}"><li class="w3-padding-16">
+                            <img src="{{  post.path }}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                            <span class="w3-large">{{ post.title }}</span><br>
+                        </li></a>
+
                     </ul>
+                    {% endfor %}
+                    {% endif %}
                 </div>
+
                 <hr>
 
                 <!-- Labels / tags -->
@@ -106,9 +98,9 @@
             <div class="w3-col l8 s12 w3-left">
                 <!-- Blog entry -->
                 <div class="w3-card-4 w3-margin w3-white">
-                    {% image '@AppBundle/public/images/mgla.jpg' %}
-                    <img src="{{ asset_url }}" alt="Mountain" style="width:100%" />
-                    {% endimage %}
+
+                    <img  src="{{  post.path }}" alt="pic" width="100%" height="300" />
+
                     <div class="w3-container">
                         <h3><b>{{ post.title }}</b></h3>
                         <h5> <span class="w3-opacity">{{ post.dataPosted |date(" m/d/Y")}}</span></h5>

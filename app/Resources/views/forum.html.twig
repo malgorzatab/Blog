@@ -104,29 +104,32 @@ and is wrapped around the whole page content, except for the footer in this  -->
             <div class="w3-container">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <footer class="w3-container w3-blue">
+            <div class="w3-container w3-blue">
                 <h5>Według was czego nie może zabraknąć w plecaku podczas wyprawy?</h5>
-            </footer>
+            </div>
+            <div class="w3-container">
+                 {{ form_start(form)}}
+                {{ form_row(form.person) }}
+               {{ form_row(form.comment) }}
+                {{ form_row(form.dataComm) }}
+                <button class="w3-button  w3-blue w3-padding" type="submit">Add Comment</button>
+                {{ form_end(form) }}
+            </div>
 
-            <script>
 
-                /**
-                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://intothewild-mb.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <div class="w3-container">
+
+                {% if comms %}
+                {% for comm in comms %}
+                <div class="w3-panel w3-pale-green">
+                    <h5>{{ comm.person }} </h5>
+                    <p class="w3-xsmall w3-serif" > <i>{{ comm.comment }}   {{ comm.dataComm |date(" m/d/Y") }}</i></p>
+                    <hr>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
 
 
 
@@ -182,6 +185,39 @@ and is wrapped around the whole page content, except for the footer in this  -->
 {% block stylesheets %}
     <style>
         body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+        label{
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+
+        textarea {
+            width: 500px;
+            height: 100px;
+            padding: 10px 15px;
+            margin: 6px  30px 12px 390px;
+            display:block;
+            font-size: 14px;
+            background-color: #E8E8E8;
+            transition: 0.5s;
+            outline: none;
+        }
+
+        input {
+            width: 430px;
+            height: 50px;
+            font-size: 14px;
+            padding: 20px 20px;
+            margin: 12px  15px 12px 15px;
+            border: 2px solid #E8E8E8;
+            box-sizing: border-box;
+            background-color: #E8E8E8;
+
+        }
+
+
+
     </style>
 {% endblock %}
 </html>

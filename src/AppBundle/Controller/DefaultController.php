@@ -82,15 +82,15 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('photoGallery.html.twig');
     }
-    /**
+   /* /**
      * @Route("/forum", name="forum")
      *
-     */
+
     public function forumAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('forum.html.twig');
-    }
+    }*/
     /**
      * @Route("/slideshow", name="slideshow")
      *

@@ -48,12 +48,11 @@ class Post
      * @ORM\Column(name="data_posted", type="date")
      */
     private $dataPosted;
-
+//@Assert\Image() @Assert\NotBlank(message="Please upload a valid Image")
+//* @Assert\File( mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"})
     /**
      * @var string
-     * @Assert\NotBlank(message="Please upload a valid Image")
-     * @Assert\File( mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"})
-     * @Assert\Image()
+     *
      * @ORM\Column(name="image",type="string", length=255)
 
      */
@@ -66,6 +65,27 @@ class Post
      */
     private $tags;
 
+    /**
+     * @var string
+     * @ORM\Column(name="path",type="text")
+     */
+    private $path;
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param mixed $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
 
 
     /**
@@ -212,22 +232,35 @@ class Post
 
 
 
-   /* public function getWebPath() {
+    public function getWebPath() {
         return null  === $this->image ? null : $this->getUploadDir().'/' .$this->image;
     }
 
-    protected function getUploadRootDir() {
+    /*protected function getUploadRootDir() {
         // the absolute directory path where uploaded documents should be saved
         return __DIR__ . '/../../../web/uploads/images'.$this->getUploadDir();
-    }
+    }*/
 
     protected function getUploadDir() {
         // the absolute directory path where uploaded documents should be saved
         return 'uploads/images';
     }
 
+    public function getFullImagePath() {
+        return null === $this->image ? null : $this->getUploadRootDir(). $this->image;
+    }
 
-    public function uploadImage() {
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return $this->getTmpUploadRootDir().$this->getId()."/";
+    }
+
+    protected function getTmpUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/uploads/';
+    }
+
+   /* public function uploadImage() {
 
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
         $this->image=$this->file->getClientOriginalName();

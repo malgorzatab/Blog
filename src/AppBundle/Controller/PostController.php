@@ -64,6 +64,7 @@ class PostController extends Controller
      */
     public function showPostsAction(Request $request)
     {
+
         $posts= $this->getDoctrine()->getRepository(Post::class)->findAll();
 
         return $this->render('posts/adminPosts.html.twig', array(
@@ -94,26 +95,31 @@ class PostController extends Controller
             /**
              * @var UploadedFile $file
              */
-            $file = $post->getImage();
+          //  $file = $post->getImage();
             // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+          //  $fileName = md5(uniqid()).'.'.$file->guessExtension();
+           // $orginal_name = $file->getClientOriginalName();
+
 
             // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
-            );
+          //  $file->move(
+          //      $this->getParameter('images_directory'),
+          //      $fileName
+          //  );
 
+           // $file_entity = new UploadedFile();
+            //$file_entity->setFileName($orginal_name);
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
            // $post->setImage($fileName);
-           $post->setImage(
-               new File($this->getParameter('images_directory').'/'.$post->getImage())
-            );
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
+            //$post->setImage(
+            //    new File($this->getParameter('images_directory').'/'.$post->getImage())
+          //  );
             return $this->redirectToRoute('post_show', array('id' => $post->getId(), 'status' => true));
         }
 
@@ -141,6 +147,7 @@ class PostController extends Controller
         }
 
         $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+
         return $this->render('posts/post_index.html.twig', array(
             'post' => $post,
             'status' => $status
@@ -177,15 +184,61 @@ class PostController extends Controller
         ));
     }
 
+
+    /**
+     * @Route("/{id}/post_delete_confirm", name="post_delete_confirm")
+     * @Method("GET")
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function confirmDeleteAction($id){
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $deleteForm = $this->createDeleteForm($post);
+        return $this->render('posts/post_delete.html.twig', array(
+            'post' => $post,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
     /**
      * Deletes a post entity.
      *
-     * @Route("/{id}", name="post_delete")
+     * @Route("/{id}post_delete", name="post_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Post $post
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function deleteAction(Request $request, Post $post)
     {
+        $form = $this->createDeleteForm($post);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($post);
+            $em->flush();
+
+            return $this->redirectToRoute('adminPosts');
+        }
+
+    }
+
+    /**
+     * Creates a form to delete a project entity.
+     *
+     * @param Post $post
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function createDeleteForm(Post $post)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('post_delete', array('id' => $post->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 
 

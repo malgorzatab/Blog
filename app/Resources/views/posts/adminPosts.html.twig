@@ -17,7 +17,7 @@
             </a>
             <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-right">HOME</a>
             <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-th"></i> PHOTOS</a>
-            <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-envelope"></i> FORUM</a>
+            <a href="{{ path('forum') }}" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-envelope"></i> FORUM</a>
             <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
             <i class="fa fa-search"></i>
 
@@ -31,12 +31,22 @@
         {% for post in posts %}
     <!-- Blog entries -->
     <div class="w3-col l8 s12 w3-left">
+
         <!-- Blog entry -->
-        <a href="{{ asset('uploads/images/' ~ post.image) }}">View image </a>
+        <h3>   </h3>
+       {# {%  image '../web/uploads/images/ccd7ee1a74f268c6aadbf4e024b2a441.jpeg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="400" height="400">
+        {% endimage %}
+
+         <img src="{{ asset('uploads/images/'~ post.image)}}" alt="Post img" style="width:100%" />
+
+<a href="<?php echo $view['assets']->getUrl('uploads/brochures/'.$post->getImage()) ?>">View brochure (PDF) </a>
+        <a href="{{ asset('uploads/images/' ~ post.image) }}">View image </a>#}
+
         <div class="w3-card-4 w3-margin w3-white">
-
-            <img src="{{ asset('../../../web/uploads/images/'~ post.image )}}" alt="Post img" style="width:100%" />
-
+            <img  src="{{  post.path }}" alt="pic" width="100%" height="261" />
+            {#<img src="{{ asset(post.getWebPath) }}"  alt="pic" width="290" height="275"/>
+            {%  image '../web/uploads/images/ccd7ee1a74f268c6aadbf4e024b2a441.jpeg' %}<img class="w3-image" src="{{ asset_url }}" alt="Me" width="400" height="400">
+            {% endimage %}#}
             <div class="w3-container">
                 <h3><b>{{ post.title }}</b></h3>
                 <h5> <span class="w3-opacity">{{ post.dataPosted |date(" m/d/Y")}}</span></h5>
@@ -48,7 +58,7 @@
                         <div class="w3-container">
                         <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_show', { 'id': post.getId() }) }}"> <b>READ MORE »</b></a></button>
                         <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_edit', { 'id': post.getId() }) }}"> <b>Edit Post »</b></a></button>
-                        <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_delete', { 'id': post.getId() }) }}"> <b>Delete Post »</b></a></button>
+                        <button class="w3-button w3-padding-large w3-white w3-border"><a href="{{ path('post_delete_confirm', { 'id': post.getId() }) }}"> <b>Delete Post »</b></a></button>
                         </div>
                     </div>
 

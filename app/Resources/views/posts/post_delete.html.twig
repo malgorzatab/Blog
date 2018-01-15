@@ -2,9 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <title>Title</title>
-</head>
-<body>
 
-</body>
+</head>
+
+{% stylesheets 'bundles/addPost.css' filter='cssrewrite' %}
+
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+{% endstylesheets %}
+{% block body %}
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-left">HOME</a>
+            <a href="{{ path('photoGallery') }}" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-th"></i> PHOTOS</a>
+            <a href="/app/Resources/views/forum.html.twig" class="w3-bar-item w3-button w3-hide-small w3-left"><i class="fa fa-envelope"></i> FORUM</a>
+            <a href="{{ path('fos_user_security_logout') }}" class="w3-bar-item w3-button w3-right ">LOG OUT</a>
+            <i class="fa fa-search"></i>
+
+
+        </div>
+    </div>
+    <div class="w3-display-middle">
+        <div class="w3-container">
+            <div class="w3-section">
+
+               <h2>Chcesz usunąć tą oferte?</h2>
+                <button onclick="location.href='{{ path('adminPosts', {'id': post.getId()}) }}'" type="button" class="w3-button w3-block w3-gray w3-section w3-padding" >Cancel</button>
+
+                {{ form_start(delete_form) }}
+                <button class="w3-button w3-block w3-gray w3-section w3-padding" onclick="location.href='{{ path('post_delete', { 'id': post.getId() }) }}'" type="submit" >Delete</button>
+
+                {{ form_end(delete_form) }}
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
 </html>
